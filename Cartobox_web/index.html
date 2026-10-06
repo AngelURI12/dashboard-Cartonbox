@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartoBox México - Control de Inventario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <!-- HEADER & NAV: Navegación Semántica -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" aria-label="Navegación principal">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+                    <i class="bi bi-box-seam-fill text-warning fs-3"></i>
+                    <span>CartoBox México</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuMain" aria-controls="menuMain" aria-expanded="false" aria-label="Abrir menú de navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#inicio"><i class="bi bi-house-door me-1"></i>Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#metricas"><i class="bi bi-speedometer2 me-1"></i>Métricas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#catalogo"><i class="bi bi-grid me-1"></i>Catálogo & Stock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#captura"><i class="bi bi-pencil-square me-1"></i>Captura de Datos</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text text-light small d-none d-md-inline">
+                        <i class="bi bi-geo-alt-fill text-warning me-1"></i>Almacén Central CDMX
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN Contenido Principal de la Aplicación -->
+    <main class="container-fluid flex-grow-1 py-4 px-lg-5" id="inicio">
+
+        <!-- CARRUSEL HERO DE IMÁGENES REALES  -->
+        <section class="mb-5" aria-label="Destacados del Almacén">
+            <div id="carouselCartoBox" class="carousel slide carousel-fade shadow rounded-3 overflow-hidden" data-bs-ride="carousel">
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselCartoBox" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Diapositiva 1"></button>
+                    <button type="button" data-bs-target="#carouselCartoBox" data-bs-slide-to="1" aria-label="Diapositiva 2"></button>
+                    <button type="button" data-bs-target="#carouselCartoBox" data-bs-slide-to="2" aria-label="Diapositiva 3"></button>
+                </div>
+
+                <!-- Diapositivas con Imágenes -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Almacén de cajas y tarimas de cartón corrugado">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-4 rounded-3 text-start">
+                            <h2 class="fw-bold text-warning"><i class="bi bi-boxes me-2"></i>Soluciones de Cartón Corrugado</h2>
+                            <p class="mb-0">Diseño y fabricación de empaques a la medida para distribución e industria pesada.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Despacho logístico y camiones de carga">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-4 rounded-3 text-start">
+                            <h2 class="fw-bold text-warning"><i class="bi bi-truck me-2"></i>Despacho Logístico en CDMX</h2>
+                            <p class="mb-0">Control automatizado de salidas de almacén y rutas de distribución local.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Escanear inventario y control de empaques">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-4 rounded-3 text-start">
+                            <h2 class="fw-bold text-warning"><i class="bi bi-qr-code-scan me-2"></i>Control Digital de Inventarios</h2>
+                            <p class="mb-0">Monitoreo dinámico de stock crítico y registros de entradas/salidas en tiempo real.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCartoBox" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselCartoBox" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </section>
+
+        <!--DASHBOARD DE MÉTRICAS -->
+        <section class="row g-3 mb-5" id="metricas" aria-label="Métricas del sistema">
+            <div class="col-12 col-md-4">
+                <article class="card border-0 shadow-sm border-start border-primary border-4 h-100">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase fw-semibold mb-1 small">Total SKUs</h6>
+                            <h3 class="mb-0 fw-bold" id="metric-skus">3</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary">
+                            <i class="bi bi-boxes fs-3"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-4">
+                <article class="card border-0 shadow-sm border-start border-success border-4 h-100">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase fw-semibold mb-1 small">Unidades Totales</h6>
+                            <h3 class="mb-0 fw-bold" id="metric-unidades">1,708</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle text-success">
+                            <i class="bi bi-archive-fill fs-3"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-4">
+                <article class="card border-0 shadow-sm border-start border-danger border-4 h-100">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase fw-semibold mb-1 small">Alertas (Crítico/Reorden)</h6>
+                            <h3 class="mb-0 fw-bold text-danger" id="metric-alertas">2</h3>
+                        </div>
+                        <div class="bg-danger bg-opacity-10 p-3 rounded-circle text-danger">
+                            <i class="bi bi-exclamation-triangle-fill fs-3"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO Y TARJETAS -->
+        <section class="mb-5" id="catalogo" aria-label="Líneas de empaque y existencias">
+            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                <h3 class="fw-bold text-dark m-0"><i class="bi bi-grid-3x3-gap-fill text-warning me-2"></i>Líneas de Empaque Registradas</h3>
+                <span class="badge bg-dark px-3 py-2">Filtro de Estado Activo</span>
+            </div>
+            
+            <div class="grid-tarjetas" id="contenedorTarjetas">
+                
+                <article class="h-100">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge bg-warning text-dark font-monospace">ECT-32</span>
+                                <button class="btn btn-sm btn-outline-danger btn-eliminar border-0" 
+                                        data-id="estatica-1" 
+                                        data-stock="45" 
+                                        title="Eliminar insumo">
+                                    <i class="bi bi-trash fs-5"></i>
+                                </button>
+                            </div>
+                            <h5 class="card-title fw-bold">Caja Corrugada Regular</h5>
+                            <p class="card-text text-muted flex-grow-1">Ideal para empaque estándar y paquetería local de hasta 20 kg.</p>
+                            <button class="btn btn-sm btn-outline-dark mb-3 w-100 btn-detalle" 
+                                    data-sku="CB-403030-DC" 
+                                    data-nombre="Caja Corrugada Regular" 
+                                    data-categoria="Cartón Corrugado" 
+                                    data-stock="45" 
+                                    data-unidad="pzas" 
+                                    data-estado="Crítico" 
+                                    data-ubicacion="Pasillo A-02">
+                                <i class="bi bi-info-circle me-1"></i>Ver Detalle
+                            </button>
+                            <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                <small class="text-secondary">SKU: <strong>CB-403030-DC</strong></small>
+                                <span class="badge bg-danger">Crítico (45 pzas)</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="h-100">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge bg-warning text-dark font-monospace">3/16 High-Density</span>
+                                <button class="btn btn-sm btn-outline-danger btn-eliminar border-0" 
+                                        data-id="estatica-2" 
+                                        data-stock="213" 
+                                        title="Eliminar insumo">
+                                    <i class="bi bi-trash fs-5"></i>
+                                </button>
+                            </div>
+                            <h5 class="card-title fw-bold">Rollo Poliburbuja</h5>
+                            <p class="card-text text-muted flex-grow-1">Amortiguación de alto impacto para productos frágiles y electrónicos.</p>
+                            <button class="btn btn-sm btn-outline-dark mb-3 w-100 btn-detalle" 
+                                    data-sku="EMB-BUR-100M" 
+                                    data-nombre="Rollo Poliburbuja" 
+                                    data-categoria="Material de Protección" 
+                                    data-stock="213" 
+                                    data-unidad="rollos" 
+                                    data-estado="Reorden" 
+                                    data-ubicacion="Pasillo B-01">
+                                <i class="bi bi-info-circle me-1"></i>Ver Detalle
+                            </button>
+                            <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                <small class="text-secondary">SKU: <strong>EMB-BUR-100M</strong></small>
+                                <span class="badge bg-warning text-dark">Reorden (213 rollos)</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="h-100">
+                    <div class="card h-100 border-0 shadow-sm card-hover">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge bg-warning text-dark font-monospace">ECT-44 Reforzada</span>
+                                <button class="btn btn-sm btn-outline-danger btn-eliminar border-0" 
+                                        data-id="estatica-3" 
+                                        data-stock="1450" 
+                                        title="Eliminar insumo">
+                                    <i class="bi bi-trash fs-5"></i>
+                                </button>
+                            </div>
+                            <h5 class="card-title fw-bold">Caja Doble Corrugado</h5>
+                            <p class="card-text text-muted flex-grow-1">Estructura pesada diseñada para estibado exigente y exportación.</p>
+                            <button class="btn btn-sm btn-outline-dark mb-3 w-100 btn-detalle" 
+                                    data-sku="CB-202015-RF" 
+                                    data-nombre="Caja Doble Corrugado" 
+                                    data-categoria="Cartón Corrugado" 
+                                    data-stock="1450" 
+                                    data-unidad="pzas" 
+                                    data-estado="Óptimo" 
+                                    data-ubicacion="Pasillo C-05">
+                                <i class="bi bi-info-circle me-1"></i>Ver Detalle
+                            </button>
+                            <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                <small class="text-secondary">SKU: <strong>CB-202015-RF</strong></small>
+                                <span class="badge bg-success">Óptimo (1,450 pzas)</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE CAPTURA CON VALIDACIÓN VISUAL  -->
+        <section class="row justify-content-center my-5" id="captura">
+            <div class="col-12 col-lg-8 col-xl-7">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h4 class="card-title fw-bold mb-0 text-warning d-flex align-items-center gap-2">
+                            <i class="bi bi-pencil-square"></i> Registro y Captura de Movimientos
+                        </h4>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <p class="text-muted mb-4">Ingresa la información para dar de alta o actualizar existencias en el almacén central.</p>
+
+                        <!-- Formulario de Captura -->
+                        <form class="needs-validation" novalidate id="formCapturaInsumo">
+                            <div class="row g-3">
+                                <!-- SKU -->
+                                <div class="col-12 col-md-6">
+                                    <label for="sku" class="form-label font-monospace fw-semibold">SKU del Producto <span class="text-danger">*</span></label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text"><i class="bi bi-barcode"></i></span>
+                                        <input type="text" class="form-control font-monospace text-uppercase" id="sku" placeholder="Ej. CB-403030-DC" pattern="^[A-Z0-9\-]{6,15}$" required>
+                                        <div class="invalid-feedback">
+                                            Formato inválido. Usa de 6 a 15 caracteres en mayúsculas (ej. CB-403030-DC).
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Categoría -->
+                                <div class="col-12 col-md-6">
+                                    <label for="categoria" class="form-label font-monospace fw-semibold">Categoría <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="categoria" required>
+                                        <option value="" selected disabled>Selecciona una categoría...</option>
+                                        <option value="Cartón Corrugado">Cartón Corrugado</option>
+                                        <option value="Material de Protección">Material de Protección</option>
+                                        <option value="Insumos de Sellado">Insumos de Sellado</option>
+                                        <option value="Empaque Especializado">Empaque Especializado</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor selecciona una categoría válida.
+                                    </div>
+                                </div>
+
+                                <!-- Descripción -->
+                                <div class="col-12">
+                                    <label for="descripcion" class="form-label font-monospace fw-semibold">Nombre / Descripción Corta <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="descripcion" placeholder="Ej. Caja Regular Doble Canto 40x30x30 cm" minlength="5" required>
+                                    <div class="invalid-feedback">
+                                        Debes proporcionar una descripción de al menos 5 caracteres.
+                                    </div>
+                                </div>
+
+                                <!-- Cantidad -->
+                                <div class="col-12 col-md-4">
+                                    <label for="cantidad" class="form-label font-monospace fw-semibold">Cantidad <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="cantidad" min="1" max="100000" placeholder="0" required>
+                                    <div class="invalid-feedback">
+                                        Ingresa una cantidad mayor a 0.
+                                    </div>
+                                </div>
+
+                                <!-- Unidad de Medida -->
+                                <div class="col-12 col-md-4">
+                                    <label for="unidad" class="form-label font-monospace fw-semibold">Unidad de Medida <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="unidad" required>
+                                        <option value="" selected disabled>Unidad...</option>
+                                        <option value="pzas">Piezas (pzas)</option>
+                                        <option value="rollos">Rollos</option>
+                                        <option value="paquetes">Paquetes</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecciona la unidad de medida.
+                                    </div>
+                                </div>
+
+                                <!-- Ubicación -->
+                                <div class="col-12 col-md-4">
+                                    <label for="ubicacion" class="form-label font-monospace fw-semibold">Ubicación en Bodega <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="ubicacion" placeholder="Ej. Pasillo A-04" required>
+                                    <div class="invalid-feedback">
+                                        Indica la ubicación física en almacén.
+                                    </div>
+                                </div>
+
+                                <!-- Confirmación -->
+                                <div class="col-12 mt-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="confirmacion" required>
+                                        <label class="form-check-label text-secondary small" for="confirmacion">
+                                            Confirmo que el conteo físico y la inspección de calidad fueron verificados.
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Debes confirmar el conteo antes de registrar.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Botones de Acción -->
+                                <div class="col-12 mt-4 d-flex gap-2 justify-content-end">
+                                    <button type="reset" class="btn btn-outline-secondary px-4 fw-semibold">Limpiar</button>
+                                    <button type="submit" class="btn btn-warning px-4 fw-bold text-dark">
+                                        <i class="bi bi-save-fill me-1"></i> Guardar Registro
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DINÁMICO -->
+    <div class="modal fade" id="modalDetalleStock" tabindex="-1" aria-labelledby="modalDetalleStockLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white border-bottom border-warning border-3">
+                    <h5 class="modal-title fw-bold text-warning" id="modalDetalleStockLabel">
+                        <i class="bi bi-box-seam me-2"></i>Detalle de Insumo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-3">
+                        <span id="modalEstadoBadge" class="badge bg-secondary fs-6 px-3 py-2 mb-2">Estado</span>
+                        <h4 id="modalNombreProducto" class="fw-bold text-dark mb-1">Nombre Producto</h4>
+                        <p class="font-monospace text-muted small" id="modalSKU">SKU: ---</p>
+                    </div>
+
+                    <ul class="list-group list-group-flush border-top border-bottom my-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="text-secondary"><i class="bi bi-tags me-2"></i>Categoría:</span>
+                            <span class="fw-bold text-dark" id="modalCategoria">---</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="text-secondary"><i class="bi bi-archive me-2"></i>Stock Actual:</span>
+                            <span class="fw-bold fs-5 text-primary" id="modalStock">0 pzas</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="text-secondary"><i class="bi bi-geo-alt me-2"></i>Ubicación Física:</span>
+                            <span class="fw-bold text-dark" id="modalUbicacion">---</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer bg-light border-0">
+                    <button type="button" class="btn btn-secondary px-4 fw-semibold" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Pie de página Semántico -->
+    <footer class="bg-dark text-light py-4 mt-auto border-top border-warning border-3">
+        <div class="container-fluid text-center">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-md-start mb-2 mb-md-0">
+                    <span class="fw-bold text-warning">CartoBox México</span> &copy; 2026 — Sistema Logístico de Almacén
+                </div>
+                <div class="col-12 col-md-6 text-md-end text-muted small">
+                    Licenciatura en Informática | Universidad Nacional Autónoma de México
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts CDN Bootstrap y Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
