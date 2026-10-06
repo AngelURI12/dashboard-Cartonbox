@@ -1,4 +1,4 @@
-// Validación Bootstrap 5.3 + API REST Falsa (GET, POST, DELETE) + Manipulación del DOM - CartoBox México
+
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // ---------------------------------------------------------
-    // 1. INICIALIZACIÓN DEL MODAL DE BOOTSTRAP
-    // ---------------------------------------------------------
+    //  INICIALIZACIÓN DEL MODAL DE BOOTSTRAP
+
     const modalElement = document.getElementById('modalDetalleStock');
     const modalDetalle = modalElement ? new bootstrap.Modal(modalElement) : null;
 
@@ -45,11 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalUbicacion = document.getElementById('modalUbicacion');
     const modalEstadoBadge = document.getElementById('modalEstadoBadge');
 
-    // ---------------------------------------------------------
-    // 2. DELEGACIÓN GLOBAL DE EVENTOS (Abre Modal y Elimina Cualquier Tarjeta)
-    // ---------------------------------------------------------
+    //  DELEGACIÓN GLOBAL DE EVENTOS (Abre Modal y Elimina Tarjetas)
+
     document.addEventListener('click', async (e) => {
-        // A. Abrir Modal de Detalle
+        //  Abrir Modal de Detalle
         const btnDetalle = e.target.closest('.btn-detalle');
         if (btnDetalle && modalDetalle) {
             const data = btnDetalle.dataset;
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalDetalle.show();
         }
 
-        // B. Manipulación del DOM: Eliminar cualquier tarjeta de la lista y de la API
+        // Manipulación del DOM: Eliminar cualquier tarjeta de la lista y de la API
         const btnEliminar = e.target.closest('.btn-eliminar');
         if (btnEliminar) {
             const idInsumo = btnEliminar.dataset.id;
@@ -108,9 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ---------------------------------------------------------
-    // 3. CARGA INICIAL DESDE LA API REST (GET) CON NOMBRES REALES
-    // ---------------------------------------------------------
+    //  CARGA INICIAL DESDE LA API REST (GET) CON NOMBRES REALES
     async function cargarInsumosAPI() {
         try {
             const respuesta = await fetch(`${API_URL}?_limit=4`);
@@ -146,9 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cargarInsumosAPI();
 
-    // ---------------------------------------------------------
-    // 4. ENVÍO Y CAPTURA A LA API REST (POST) Y AL DOM
-    // ---------------------------------------------------------
+    // ENVÍO Y CAPTURA A LA API REST (POST) Y AL DOM
+
     const formulario = document.getElementById('formCapturaInsumo');
 
     if (formulario) {
@@ -200,10 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formulario.classList.add('was-validated');
         }, false);
     }
-
-    // ---------------------------------------------------------
-    // 5. FUNCIONES AUXILIARES DE RENDERIZADO Y MÉTRICAS
-    // ---------------------------------------------------------
+    //FUNCIONES AUXILIARES DE RENDERIZADO Y MÉTRICAS
     function renderizarTarjetaDOM(insumo) {
         let estado = 'Óptimo';
         let badgeClass = 'bg-success';
